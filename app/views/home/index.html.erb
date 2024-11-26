@@ -1,0 +1,23 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-4xl font-bold text-center mb-8">Hotel Heritage Bajracharya</h1>
+  
+  <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    <h2 class="text-2xl font-semibold mb-4">Find Available Rooms</h2>
+    
+    <%= form_with url: home_search_path, method: :post, class: "space-y-4" do |f| %>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <%= f.label :checkin_day, "Check-in Date", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.date_field :checkin_day, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+        </div>
+        
+        <div>
+          <%= f.label :checkout_day, "Check-out Date", class: "block text-sm font-medium text-gray-700" %>
+          <%= f.date_field :checkout_day, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+        </div>
+      </div>
+      
+      <%= f.submit "Search Rooms", class: "mt-4 w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="container mx-auto px-4 py-8">
+  <h1 class="text-4xl font-bold text-center mb-8">My Bookings</h1>
+  <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-6">
+    <% @bookings.each do |booking| %>
+      <div class="mb-4">
+        <h2 class="text-2xl font-semibold mb-2">Room <%= booking.rooms.first.room_number %></h2>
+        <p><strong>Check-in:</strong> <%= booking.checkin_day.strftime("%B %d, %Y") %></p>
+        <p><strong>Check-out:</strong> <%= booking.checkout_day.strftime("%B %d, %Y") %></p>
+        <p><strong>Total Amount:</strong> $<%= booking.total_amount %></p>
+        <p><strong>Status:</strong> <%= booking.status.capitalize %></p>
+        <%= link_to 'View Booking', booking_path(booking), class: 'block w-full text-center bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300' %>
+      </div>
+    <% end %>
+  </div>
+</div>

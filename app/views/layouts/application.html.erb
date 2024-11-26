@@ -10,22 +10,51 @@
 
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  <body class="bg-gray-100">
+    <nav class="bg-white shadow-md">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="text-2xl font-bold">
+          <%= link_to "Hotel Heritage Bajracharya", root_path, class: "hover:text-indigo-600" %>
+        </div>
+        <div class="space-x-4 flex">
+          <%= link_to "Home", root_path, class: "text-gray-700 hover:text-indigo-600" %>
+          <% if user_signed_in? %>
+            <% if current_user.admin? %>
+              <%= link_to "Bookings", admin_bookings_path, class: "text-gray-700 hover:text-indigo-600" %>
+            <% else %>
+              <%= link_to "My Bookings", bookings_path, class: "text-gray-700 hover:text-indigo-600" %>
+            <% end %>
+            <%= link_to "My Profile", edit_user_registration_path, class: "text-gray-700 hover:text-indigo-600" %>
+            <%= link_to "About Us", "#", class: "text-gray-700 hover:text-indigo-600" %>
+            <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "text-gray-700 hover:text-indigo-600" %>
+          <% else %>
+            <%= link_to "About Us", "#", class: "text-gray-700 hover:text-indigo-600" %>
+            <%= link_to "Sign In", new_user_session_path, class: "text-gray-700 hover:text-indigo-600" %>
+            <%= link_to "Sign Up", new_user_registration_path, class: "text-gray-700 hover:text-indigo-600" %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+      <div class="fixed top-16 right-4 space-y-4 w-fit">
+        <% if notice %>
+          <p class="notice bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"><%= alert %></p>
+        <% end %>
+      </div>
+      <%= yield %>
+    </div>
   </body>
 </html>

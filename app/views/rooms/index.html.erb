@@ -1,0 +1,32 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="mb-6">
+    <h1 class="text-3xl font-bold">Available Rooms</h1>
+    <p class="text-gray-600">
+      For <%= @checkin_day.strftime("%B %d, %Y") %> to <%= @checkout_day.strftime("%B %d, %Y") %>
+    </p>
+  </div>
+
+  <% if @rooms.empty? %>
+    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+      <div class="flex">
+        <div class="ml-3">
+          <p class="text-yellow-700">
+            No rooms available for the selected dates. Please try different dates.
+          </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% @rooms.each do |room| %>
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="p-6">
+          <h2 class="text-2xl font-semibold mb-4">Room <%= room.room_number %></h2>
+          <p>Price: $<%= room.price %></p>
+          <%= link_to 'View Room', room_path(room, checkin_day: @checkin_day, checkout_day: @checkout_day), class: 'block w-full text-center bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

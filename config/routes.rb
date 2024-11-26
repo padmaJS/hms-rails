@@ -12,4 +12,21 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  root 'home#index'
+
+  get 'home/index'
+  post 'home/search', to: 'home#search'
+
+  resources :rooms, only: [:index, :show] do
+    resources :bookings, only: [:new, :create]
+  end
+
+  resources :bookings, only: [:index, :show]
+
+  namespace :admin do
+    resources :bookings, only: [:index, :update] do
+      patch :cancel, on: :member
+    end
+  end
 end

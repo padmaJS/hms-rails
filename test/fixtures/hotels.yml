@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  address: MyString
+  checkin_time: 2024-11-21 11:47:11
+  checkout_time: 2024-11-21 11:47:11
+  email: MyString
+  phone_number: MyString
+  instagram_url: MyString
+  facebook_url: MyString
+  timestamps: MyString
+
+two:
+  name: MyString
+  address: MyString
+  checkin_time: 2024-11-21 11:47:11
+  checkout_time: 2024-11-21 11:47:11
+  email: MyString
+  phone_number: MyString
+  instagram_url: MyString
+  facebook_url: MyString
+  timestamps: MyString
