@@ -1,0 +1,48 @@
+<div class="min-h-screen bg-cover bg-center min-h-[25rem] flex flex-col" style="background-image: url(<%= asset_path('hotel_scenary1.jpg') %>);">
+  <section class="flex-1 flex flex-col md:flex-row">
+    <div class="flex-1 flex items-center justify-center p-8 bg-primary text-primary-foreground bg-opacity-75">
+      <h1 class="text-4xl md:text-6xl font-bold">Hotel Heritage Rana</h1>
+    </div>
+    <div class="flex-1 flex items-center justify-center p-8 bg-secondary text-secondary-foreground bg-opacity-75">
+      <div class="space-y-4">
+        <div class="flex items-center space-x-2">
+          <%= octicon "clock", class: "w-6 h-6" %>
+          <p>Check-in: <%= @hotel.checkin_time.strftime("%I:%M %p") %></p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <%= octicon "clock", class: "w-6 h-6" %>
+          <p>Check-out: <%= @hotel.checkout_time.strftime("%I:%M %p") %></p>
+        </div>
+        <div class="flex items-center space-x-2">
+          <%= octicon "location", class: "w-6 h-6" %>
+          <p><%= @hotel.address %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="flex flex-col md:flex-row">
+  <div class="flex-1 p-8 flex flex-col justify-between bg-background">
+    <p class="text-lg">
+      Nestled amidst the rich history and vibrant culture of Bhaktapur, Hotel Heritage Rana offers a haven for relaxation and exploration. Just steps away from the famed Durbar Square, our hotel is your perfect base camp for experiencing the magic of this historic city. Step back in time and immerse yourself in the beauty of Newari architecture. Our elegantly appointed guest rooms, adorned with traditional Nepalese art and handcrafted furniture, offer a unique blend of modern comfort and timeless charm.
+    </p>
+    <div class="mt-4">
+      <%= image_tag "hotel_scenary3.jpeg", alt: "Hotel exterior", class: "rounded-lg w-full h-auto" %>
+    </div>
+  </div>
+  <div class="flex-1 p-8 flex flex-col bg-muted">
+    <div class="mb-4">
+      <%= image_tag "hotel_scenary4.jpg", alt: "Hotel interior", class: "rounded-lg w-full h-auto" %>
+    </div>
+    <h2 class="text-2xl font-semibold mb-4">Our Amenities</h2>
+    <ul class="list-disc list-inside space-y-2">
+      <li>24/7 Front Desk</li>
+      <li>Free Wi-Fi</li>
+      <li>Rooftop Restaurant</li>
+      <li>Spa and Wellness Center</li>
+      <li>Cultural Tours and Activities</li>
+      <li>Airport Shuttle Service</li>
+    </ul>
+  </div>
+</div>

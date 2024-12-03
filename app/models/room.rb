@@ -8,9 +8,11 @@ class Room < ApplicationRecord
   validates :room_number, presence: true, uniqueness: { scope: :hotel_id }
   validates :price, presence: true, numericality: { greater_than: 0 }
 
-  def self.available_for_dates(check_in, check_out)
-    where.not(id: unavailable_room_ids(check_in, check_out))
-  end
+  scope :available_for_dates, ->(checkin_day, checkout_day) {
+    left_joins(:bookings)
+      .where('bookings.id IS NULL OR bookings.checkin_day > ? OR (bookings.checkout_day < ? AND rooms.status = ?)', checkout_day, checkin_day, 'available')
+      .distinct
+  }
 
   private
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "pages/about"
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -25,8 +26,10 @@ Rails.application.routes.draw do
   resources :bookings, only: [:index, :show]
 
   namespace :admin do
-    resources :bookings, only: [:index, :update] do
+    resources :bookings do
       patch :cancel, on: :member
     end
   end
+
+  get 'about', to: 'pages#about'
 end

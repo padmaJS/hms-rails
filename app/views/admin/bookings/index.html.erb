@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <% @bookings.each do |booking| %>
-          <tr>
+          <tr class="text-center">
             <td class="py-2 px-4 border-b"><%= booking.user.email %></td>
             <td class="py-2 px-4 border-b">$<%= booking.total_amount %></td>
             <td class="py-2 px-4 border-b"><%= booking.rooms.first.room_number %></td>
@@ -25,58 +25,11 @@
             <td class="py-2 px-4 border-b"><%= booking.status.capitalize %></td>
             <td class="py-2 px-4 border-b"><%= booking.created_at.strftime("%B %d, %Y %I:%M %p") %></td>
             <td class="py-2 px-4 border-b">
-              <button 
-                type="button" 
-                class="text-blue-600 hover:underline edit-booking-btn" 
-                data-booking-id="<%= booking.id %>"
-              >
-                Edit
-              </button>
-              <%= link_to 'Cancel', cancel_admin_booking_path(booking), method: :patch, class: 'text-red-600 hover:underline', data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Edit', edit_admin_booking_path(booking), class: 'text-blue-600 hover:underline', data: { turbo_frame: "modal" } %>
             </td>
           </tr>
-
-          <div id="editBookingModal<%= booking.id %>" class="modal hidden fixed z-10 inset-0 overflow-y-auto">
-            <div class="modal-dialog relative bg-white rounded-lg shadow-lg p-6 mx-auto mt-20 max-w-md">
-              <h2 class="text-xl font-bold mb-4">Edit Booking Status</h2>
-              <%= form_with(model: [:admin, booking], local: true, method: :patch) do |f| %>
-                <div class="mb-4">
-                  <%= f.label :status, class: "block text-sm font-medium text-gray-700" %>
-                  <%= f.select :status, Booking.statuses.keys.map { |status| [status.capitalize, status] }, {}, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
-                </div>
-                <div class="flex justify-end">
-                  <%= f.submit "Update", class: "bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" %>
-                </div>
-              <% end %>
-              <button class="modal-close absolute top-0 right-0 mt-4 mr-4 text-gray-500 hover:text-gray-700">&times;</button>
-            </div>
-          </div>
         <% end %>
       </tbody>
     </table>
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('[data-toggle="modal"]').forEach(trigger => {
-      trigger.addEventListener('click', function(event) {
-        event.preventDefault();
-        const target = document.querySelector(this.dataset.target);
-        target.classList.remove('hidden');
-      });
-    });
-
-    document.querySelectorAll('.modal-close').forEach(button => {
-      button.addEventListener('click', function() {
-        this.closest('.modal').classList.add('hidden');
-      });
-    });
-
-    document.addEventListener('click', function(event) {
-      if (event.target.classList.contains('modal')) {
-        event.target.classList.add('hidden');
-      }
-    });
-  });
-</script>

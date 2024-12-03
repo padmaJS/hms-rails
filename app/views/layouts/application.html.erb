@@ -23,7 +23,7 @@
     <nav class="bg-white shadow-md">
       <div class="container mx-auto px-4 py-4 flex justify-between items-center">
         <div class="text-2xl font-bold">
-          <%= link_to "Hotel Heritage Bajracharya", root_path, class: "hover:text-indigo-600" %>
+          <%= link_to "Hotel Heritage Rana", root_path, class: "hover:text-indigo-600" %>
         </div>
         <div class="space-x-4 flex">
           <%= link_to "Home", root_path, class: "text-gray-700 hover:text-indigo-600" %>
@@ -34,10 +34,10 @@
               <%= link_to "My Bookings", bookings_path, class: "text-gray-700 hover:text-indigo-600" %>
             <% end %>
             <%= link_to "My Profile", edit_user_registration_path, class: "text-gray-700 hover:text-indigo-600" %>
-            <%= link_to "About Us", "#", class: "text-gray-700 hover:text-indigo-600" %>
+            <%= link_to "About Us", about_path, class: "text-gray-700 hover:text-indigo-600" %>
             <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "text-gray-700 hover:text-indigo-600" %>
           <% else %>
-            <%= link_to "About Us", "#", class: "text-gray-700 hover:text-indigo-600" %>
+            <%= link_to "About Us", about_path, class: "text-gray-700 hover:text-indigo-600" %>
             <%= link_to "Sign In", new_user_session_path, class: "text-gray-700 hover:text-indigo-600" %>
             <%= link_to "Sign Up", new_user_registration_path, class: "text-gray-700 hover:text-indigo-600" %>
           <% end %>
@@ -56,5 +56,6 @@
       </div>
       <%= yield %>
     </div>
+    <%= turbo_frame_tag "modal" %>
   </body>
 </html>

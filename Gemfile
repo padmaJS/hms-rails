@@ -65,3 +65,4 @@ end
 gem "devise"
 gem "tailwindcss-rails"
 gem "enum_help", "~> 0.0.19"
+gem 'octicons_helper'
