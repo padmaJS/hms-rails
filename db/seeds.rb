@@ -1,7 +1,7 @@
 admin = User.create!(
   email: 'admin@admin.com',
-  password: 'asdfasdf',
-  password_confirmation: 'asdfasdf',
+  password: 'admin123',
+  password_confirmation: 'admin123',
   role: :admin,
   confirmed_at: Time.now,
   phone_number: "1234567890",
@@ -10,7 +10,7 @@ admin = User.create!(
 )
 
 guest = User.create!(
-  email: 'guest@hms.com',
+  email: 'guest@gmail.com',
   password: 'password',
   password_confirmation: 'password',
   role: :guest,
